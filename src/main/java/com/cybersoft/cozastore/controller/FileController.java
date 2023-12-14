@@ -1,4 +1,4 @@
-package com.cybersoft.cozastore.controller.login;
+package com.cybersoft.cozastore.controller;
 
 import com.cybersoft.cozastore.payload.BaseResponse;
 import com.cybersoft.cozastore.service.IFileService;

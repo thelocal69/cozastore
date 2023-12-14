@@ -1,3 +1,4 @@
+/*
 package com.cybersoft.cozastore.provider;
 
 import com.cybersoft.cozastore.entity.UserEntity;
@@ -58,3 +59,4 @@ public class CustomAuthenProvider implements AuthenticationProvider {
         return authentication.equals(UsernamePasswordAuthenticationToken.class);
     }
 }
+*/

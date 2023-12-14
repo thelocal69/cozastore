@@ -19,7 +19,7 @@ public class ProductDTO {
     private String description;
     private int quantity;
     private Date createDate;
-    private int idCategory;
-    private int idSize;
-    private int idColor;
+    private String categoryName;
+    private String sizeName;
+    private String colorName;
 }

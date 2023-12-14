@@ -1,3 +1,4 @@
+/*
 package com.cybersoft.cozastore.config;
 
 import com.cybersoft.cozastore.filter.JwtFilter;
@@ -71,3 +72,4 @@ public class SercurityConfig {
                 .and().addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class).build();
     }
 }
+*/

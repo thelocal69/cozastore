@@ -1,4 +1,4 @@
-package com.cybersoft.cozastore.controller.login;
+package com.cybersoft.cozastore.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

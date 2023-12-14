@@ -1,3 +1,4 @@
+/*
 package com.cybersoft.cozastore.filter;
 
 import com.cybersoft.cozastore.util.JWTHelper;
@@ -59,3 +60,4 @@ public class JwtFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 }
+*/
