@@ -35,9 +35,20 @@ public class ProductController {
     }
 
     @GetMapping("")
-    public ResponseEntity<OutputResponse> getAllProduct(@RequestParam int page){
+    public ResponseEntity<OutputResponse> getAllProduct(@RequestParam int page, @RequestParam String sortBy, String sortField){
         return new ResponseEntity<>(
-                productService.getPageProduct(page), HttpStatus.OK
+                productService.getPageProduct(page, sortBy, sortField), HttpStatus.OK
+        );
+    }
+
+    @GetMapping("/api/productName")
+    public ResponseEntity<ResponseObject> getProductByName(@RequestParam String name){
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject(
+                        200,
+                        "Get product is completed !",
+                        productService.getProductByName(name)
+                )
         );
     }
 

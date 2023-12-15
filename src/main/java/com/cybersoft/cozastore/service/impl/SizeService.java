@@ -23,4 +23,9 @@ public class SizeService implements ISizeService {
     public List<SizeDTO> getAllSize() {
         return sizeConverter.toSizeDTOList(sizeRepository.findAll());
     }
+
+    @Override
+    public List<String> getAllSizeName() {
+        return sizeRepository.getAllSizeName();
+    }
 }

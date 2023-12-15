@@ -29,4 +29,15 @@ public class CategoryController {
                 )
         );
     }
+
+    @GetMapping("/api/getName")
+    public ResponseEntity<ResponseObject> getAllName(){
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject(
+                        200,
+                        "Get all category name is complete !",
+                        categoryService.getAllCategoryName()
+                )
+        );
+    }
 }

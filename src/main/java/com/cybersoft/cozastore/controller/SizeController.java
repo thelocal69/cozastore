@@ -29,4 +29,15 @@ public class SizeController {
                 )
         );
     }
+
+    @GetMapping("/api/getName")
+    public ResponseEntity<ResponseObject> getAllName(){
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject(
+                        200,
+                        "Get all size name is completed !",
+                        sizeService.getAllSizeName()
+                )
+        );
+    }
 }

@@ -29,4 +29,15 @@ public class ColorController {
                 )
         );
     }
+
+    @GetMapping("/api/getName")
+    public ResponseEntity<ResponseObject> getAllName(){
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject(
+                        200,
+                        "Get all color name is completed !",
+                        colorService.getAllColorName()
+                )
+        );
+    }
 }

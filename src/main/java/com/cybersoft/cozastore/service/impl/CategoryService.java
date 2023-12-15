@@ -26,4 +26,9 @@ public class CategoryService implements ICategoryService {
     public List<CategoryDTO> getAllCategory() {
         return categoryConverter.toCategoryDTOList(categoryRepository.findAll());
     }
+
+    @Override
+    public List<String> getAllCategoryName() {
+        return categoryRepository.getAll();
+    }
 }

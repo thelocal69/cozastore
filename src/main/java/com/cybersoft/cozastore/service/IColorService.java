@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface IColorService {
     List<ColorDTO> getAllColor();
+    List<String> getAllColorName();
 }

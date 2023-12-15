@@ -60,9 +60,18 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public OutputResponse getPageProduct(int page) {
+    public List<ProductDTO> getProductByName(String name) {
+        List<ProductEntity> productEntityList = productRepository.findAllByNameContainingIgnoreCase(name);
+        if (productEntityList.isEmpty()){
+            return null;
+        }
+        return productConverter.toProductDTOList(productEntityList);
+    }
+
+    @Override
+    public OutputResponse getPageProduct(int page, String sortBy, String sortField) {
         int limit = 6;
-        Pageable pageable = PageRequest.of(page - 1, limit, Sort.by("id").descending());
+        Pageable pageable = PageRequest.of(page - 1, limit, Sort.by(Sort.Direction.fromString(sortBy),sortField));
         List<ProductDTO> productDTOList = productConverter.toProductDTOList(
                 productRepository.findAll(pageable).getContent()
         );

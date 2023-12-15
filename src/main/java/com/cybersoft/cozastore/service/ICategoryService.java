@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ICategoryService {
     List<CategoryDTO> getAllCategory();
+    List<String> getAllCategoryName();
 }

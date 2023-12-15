@@ -10,7 +10,8 @@ import java.util.List;
 
 public interface IProductService {
     List<ProductDTO> getAll();
-    OutputResponse getPageProduct(int page);
+    List<ProductDTO> getProductByName(String name);
+    OutputResponse getPageProduct(int page, String sortBy, String sortField);
 
     Boolean insert(String name,
                    MultipartFile file,

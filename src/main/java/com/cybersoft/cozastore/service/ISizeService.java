@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ISizeService {
     List<SizeDTO> getAllSize();
+    List<String> getAllSizeName();
 }

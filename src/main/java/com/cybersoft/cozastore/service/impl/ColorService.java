@@ -26,4 +26,9 @@ public class ColorService implements IColorService {
     public List<ColorDTO> getAllColor() {
         return colorConverter.toColorDTOList(colorRepository.findAll());
     }
+
+    @Override
+    public List<String> getAllColorName() {
+        return colorRepository.getAllColorName();
+    }
 }
