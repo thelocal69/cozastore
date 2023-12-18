@@ -1,13 +1,16 @@
-/*
-package com.cybersoft.cozastore.controller.login;
+package com.cybersoft.cozastore.controller;
 
+import com.cybersoft.cozastore.dto.LoginDTO;
 import com.cybersoft.cozastore.dto.UserDTO;
 import com.cybersoft.cozastore.payload.BaseResponse;
+import com.cybersoft.cozastore.payload.ResponseToken;
 import com.cybersoft.cozastore.service.ILoginService;
 import com.cybersoft.cozastore.util.JWTHelper;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,7 +23,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/account")
 public class LoginController {
 
     private final AuthenticationManager authenticationManager;
@@ -40,23 +43,32 @@ public class LoginController {
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<BaseResponse> signIn(@RequestParam String email, @RequestParam String password){
+    public ResponseEntity<BaseResponse> signIn(@RequestBody LoginDTO loginDTO){
 //        SecretKey key =  Keys.secretKeyFor(SignatureAlgorithm.HS256);
 //        String secretString = Encoders.BASE64.encode(key.getEncoded());
         //System.out.println("test " + secretString);
         UsernamePasswordAuthenticationToken authen = new UsernamePasswordAuthenticationToken(
-                email
-                , password
+                loginDTO.getEmail()
+                , loginDTO.getPassword()
         );
         authenticationManager.authenticate(authen);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         List<SimpleGrantedAuthority> roles = (List<SimpleGrantedAuthority>) authentication.getAuthorities();
-        String jsonRole = gson.toJson(roles);
+        ResponseToken responseToken = new ResponseToken();
+        responseToken.setEmail(loginDTO.getEmail());
+        responseToken.setData(roles);
+        String jsonRole = gson.toJson(responseToken);
         String token = jwtHelper.generateToken(jsonRole);
-        return ResponseEntity.status(HttpStatus.OK).body(
+//        ResponseCookie responseCookie = ResponseCookie.from("jwt", token)
+//                .httpOnly(true)
+//                .secure(true)
+//                .path("/")
+//                .maxAge(60 * 60 * 1000)
+//                .build();
+        return ResponseEntity.status(HttpStatus.OK).header(HttpHeaders.AUTHORIZATION).body(
                 new BaseResponse(
                         "Success",
-                        "Yes",
+                        "Login is successfully !",
                         token
                 )
         );
@@ -74,4 +86,3 @@ public class LoginController {
     );
     }
 }
-*/

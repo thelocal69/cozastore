@@ -1,4 +1,3 @@
-/*
 package com.cybersoft.cozastore.service.impl;
 
 import com.cybersoft.cozastore.converter.UserConverter;
@@ -40,4 +39,3 @@ public class LoginService implements ILoginService {
         return userConverter.toUserDTO(userRepository.save(userEntity));
     }
 }
-*/

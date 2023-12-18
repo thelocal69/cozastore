@@ -1,7 +1,7 @@
-/*
 package com.cybersoft.cozastore.provider;
 
 import com.cybersoft.cozastore.entity.UserEntity;
+import com.cybersoft.cozastore.exception.UserNotFoundException;
 import com.cybersoft.cozastore.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -48,10 +48,11 @@ public class CustomAuthenProvider implements AuthenticationProvider {
                 SecurityContextHolder.getContext().setAuthentication(token);
                 return token;
             }else {
-                return  null;
+                throw new UserNotFoundException(404, "User not found", null);
             }
+        }else {
+            throw new UserNotFoundException(404, "User not found", null);
         }
-        return null;
     }
 
     @Override
@@ -59,4 +60,3 @@ public class CustomAuthenProvider implements AuthenticationProvider {
         return authentication.equals(UsernamePasswordAuthenticationToken.class);
     }
 }
-*/
