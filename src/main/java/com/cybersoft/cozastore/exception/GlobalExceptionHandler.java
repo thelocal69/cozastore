@@ -36,4 +36,17 @@ public class GlobalExceptionHandler {
                 )
         );
     }
+
+    @ExceptionHandler(PermissionDeniedException.class)
+    public ResponseEntity<ResponseError> handlePermissionDeniedException(Exception ex){
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(
+                new ResponseError(
+                        403,
+                        "Permission Denied",
+                        new Timestamp(System.currentTimeMillis()),
+                        ex.getMessage(),
+                        ex.getLocalizedMessage()
+                )
+        );
+    }
 }
