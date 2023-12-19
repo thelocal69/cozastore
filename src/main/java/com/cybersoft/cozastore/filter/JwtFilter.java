@@ -39,7 +39,6 @@ public class JwtFilter extends OncePerRequestFilter {
         if (headerValue != null && headerValue.startsWith("Bearer ")) {
             String token = headerValue.substring(7);
             String data = jwtHelper.parserToken(token);
-            System.out.println("check " + data);
             if (data != null && !data.isEmpty()) {
                 ResponseToken responseToken = gson.fromJson(data, ResponseToken.class);
                 String newData = gson.toJson(responseToken.getData());
