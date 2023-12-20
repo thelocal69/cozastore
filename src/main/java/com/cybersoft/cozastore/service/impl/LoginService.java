@@ -6,6 +6,7 @@ import com.cybersoft.cozastore.dto.UserDTO;
 import com.cybersoft.cozastore.entity.RoleEntity;
 import com.cybersoft.cozastore.entity.UserEntity;
 import com.cybersoft.cozastore.exception.PermissionDeniedException;
+import com.cybersoft.cozastore.exception.UserNotFoundException;
 import com.cybersoft.cozastore.payload.ResponseToken;
 import com.cybersoft.cozastore.repository.RoleRepository;
 import com.cybersoft.cozastore.repository.UserRepository;
@@ -63,8 +64,11 @@ public class LoginService implements ILoginService {
 
     @Override
     public String loginAdmin(LoginDTO loginDTO) {
-        String checkRole = userRepository.getRoleNameByEmail(loginDTO.getEmail());
-        if (checkRole.equals("ROLE_ADMIN")) {
+        UserEntity user = userRepository.findOneByEmail(loginDTO.getEmail());
+        if (user == null){
+            throw new UserNotFoundException(404, "User not found !", null);
+        }
+        if (user.getRole().getName().equals("ROLE_ADMIN")) {
             return token(loginDTO);
         }else {
             throw new PermissionDeniedException(403, "Permission Denied", null);

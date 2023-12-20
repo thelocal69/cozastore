@@ -12,4 +12,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
     @Query("SELECT  u.role.name FROM user u JOIN role r ON u.role.id = r.id WHERE u.email = ?1")
     String getRoleNameByEmail(String email);
+
+    @Query("SELECT u.email FROM user u WHERE u.email = ?1")
+    String getUserEmailByEmail(String email);
 }
